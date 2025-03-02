@@ -35,7 +35,7 @@ const ImageGallery: React.FC = () => {
     },
     { 
       id: 4, 
-      src: "https://images.unsplash.com/photo-1662045010586-d3477ab33c6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
+      src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
       title: "Recovery & Wellness", 
       description: "Advanced recovery technology and relaxation spaces",
       category: "Recovery"
@@ -56,14 +56,14 @@ const ImageGallery: React.FC = () => {
     },
     { 
       id: 7, 
-      src: "https://images.unsplash.com/photo-1616394584738-fc6970f15c1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
+      src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
       title: "Executive Locker Rooms", 
       description: "Luxurious amenities and premium finishes",
       category: "Amenities"
     },
     { 
       id: 8, 
-      src: "https://images.unsplash.com/photo-1517963628385-558eec7572d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
+      src: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80", 
       title: "Outdoor Training Area", 
       description: "Functional training in premium outdoor spaces",
       category: "Training"
