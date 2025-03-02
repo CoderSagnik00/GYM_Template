@@ -54,7 +54,7 @@ export default function Home() {
 
 
       {/* Call-to-Action */}
-      <CTASection id={"id"} phoneNumber={""} />
+      <CTASection id={"id"} phoneNumber={"+91 7003390611"} />
       
       {/* Testimonials */}
       <Testimonials />

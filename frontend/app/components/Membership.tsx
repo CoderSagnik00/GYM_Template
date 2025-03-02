@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const HeroSection: React.FC = () => {
+const Membership: React.FC = () => {
   const [isVisible, setIsVisible] = useState({ pricing: false });
 
   useEffect(() => {
@@ -191,4 +191,4 @@ const HeroSection: React.FC = () => {
   );
 };
 
-export default HeroSection;
+export default Membership;
