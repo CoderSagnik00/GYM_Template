@@ -8,7 +8,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   
-  // Handle scroll effect for transparent to solid background
+  // Handle scroll effect for transparent to solid background with improved performance
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -17,18 +17,32 @@ export default function Navbar() {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    // Use passive event listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${
-      scrolled ? 'bg-black/90 backdrop-blur-md py-3' : 'bg-transparent py-5'
+    <nav className={`fixed w-full z-50 transition-all duration-300 ease-in-out ${
+      scrolled ? 'bg-black/90 backdrop-blur-md py-2' : 'bg-transparent py-4'
     }`}>
-      <div className="container mx-auto px-6 lg:px-16 flex justify-between items-center">
+      <div className="container mx-auto px-4 lg:px-16 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="group relative z-10">
           <div className="flex items-center gap-2">
@@ -43,9 +57,9 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop navigation links */}
+        {/* Desktop navigation links - Updated navigation options */}
         <div className="hidden md:flex items-center gap-8">
-          {['Home', 'Programs', 'Trainers', 'Facilities', 'About'].map((item, index) => (
+          {['Home', 'Programs', 'Trainers', 'Contact'].map((item, index) => (
             <Link 
               key={index}
               href={`/${item.toLowerCase()}`} 
@@ -107,31 +121,35 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile menu button - Improved animation */}
         <button 
-          className="md:hidden relative z-10 text-white"
+          className="md:hidden relative z-10 text-white p-2 touch-manipulation"
           onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          <div className="w-8 h-8 flex flex-col justify-center items-center gap-1.5 overflow-hidden">
-            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+          <div className="w-6 h-6 flex flex-col justify-center items-center">
+            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 transform ${menuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 mt-1.5 mb-1.5 ${menuOpen ? 'opacity-0 scale-x-0' : 'opacity-100'}`}></span>
+            <span className={`w-6 h-0.5 bg-white block transition-all duration-300 transform ${menuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
           </div>
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div className={`fixed inset-0 bg-black/95 backdrop-blur-lg z-40 transition-all duration-500 ${
-        menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-      }`}>
+      {/* Mobile menu - Improved animation and transitions */}
+      <div 
+        className={`fixed inset-0 bg-black z-40 transition-transform duration-500 ease-in-out ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         <div className="container mx-auto px-6 h-full flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-8 mb-12">
-            {['Home', 'Programs', 'Trainers', 'Facilities', 'About'].map((item, index) => (
+            {['Home', 'Programs', 'Trainers', 'Contact'].map((item, index) => (
               <Link 
                 key={index}
                 href={`/${item.toLowerCase()}`} 
-                className="text-3xl font-bold text-white hover:text-red-500 transition-all duration-300"
+                className="text-2xl font-bold text-white hover:text-red-500 transition-all duration-300 transform hover:translate-x-1"
                 onClick={() => setMenuOpen(false)}
+                style={{ transitionDelay: `${index * 50}ms` }}
               >
                 {item}
               </Link>
@@ -161,7 +179,7 @@ export default function Navbar() {
               </button>
             </div>
           ) : (
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-6 mt-6">
               <Link 
                 href="/login" 
                 className="text-xl font-medium text-white hover:text-red-500 transition-all duration-300"
