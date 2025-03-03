@@ -47,7 +47,7 @@ const Membership: React.FC = () => {
       {[
         { 
           name: "STARTER", 
-          price: "$29", 
+          price: "₹1499", 
           features: [
             "Full gym access", 
             "2 group classes/week", 
@@ -58,7 +58,7 @@ const Membership: React.FC = () => {
         },
         { 
           name: "ELITE", 
-          price: "$59", 
+          price: "₹1999", 
           features: [
             "24/7 gym access", 
             "Unlimited group classes", 
@@ -71,7 +71,7 @@ const Membership: React.FC = () => {
         },
         { 
           name: "PREMIER", 
-          price: "$99", 
+          price: "₹2999", 
           features: [
             "24/7 VIP access", 
             "Unlimited premium classes", 
@@ -147,7 +147,7 @@ const Membership: React.FC = () => {
                 : 'bg-transparent hover:bg-red-600 text-white border-2 border-red-600'
             }`}>
               <span className="relative z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 inline-block">
-                {plan.highlighted ? 'JOIN NOW' : 'GET STARTED'}
+                {plan.highlighted ? 'GET STARTED' : 'GET STARTED'}
               </span>
               {!plan.highlighted && (
                 <div className="absolute inset-0 w-full h-full scale-0 rounded transition-all duration-500 ease-in-out group-hover:scale-100 bg-red-600 -z-0"></div>

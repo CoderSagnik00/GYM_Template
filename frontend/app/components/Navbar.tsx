@@ -48,18 +48,18 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <div className="relative">
               <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                FORGE
+                RUSH
               </span>
               <span className="absolute top-0 left-0.5 text-2xl font-black text-red-600 blur-[1px] opacity-80 transition-all duration-300 group-hover:blur-[2px] group-hover:opacity-100">
-                FORGE
+                RUSH
               </span>
             </div>
           </div>
         </Link>
 
-        {/* Desktop navigation links - Updated navigation options */}
+        {/* Desktop navigation links - Updated navigation options with Memberships */}
         <div className="hidden md:flex items-center gap-8">
-          {['Home', 'Programs', 'Trainers', 'Contact'].map((item, index) => (
+          {['Home', 'Programs', 'Trainers', 'Contact','Memberships'].map((item, index) => (
             <Link 
               key={index}
               href={`/${item.toLowerCase()}`} 
@@ -143,7 +143,8 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 h-full flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-8 mb-12">
-            {['Home', 'Programs', 'Trainers', 'Contact'].map((item, index) => (
+            {/* Updated mobile menu options with Memberships */}
+            {['Home', 'Programs', 'Memberships', 'Trainers', 'Contact'].map((item, index) => (
               <Link 
                 key={index}
                 href={`/${item.toLowerCase()}`} 
@@ -194,7 +195,7 @@ export default function Navbar() {
               >
                 <div className="absolute inset-0 w-full h-full bg-red-600 rounded transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:bg-red-700"></div>
                 <span className="relative block px-8 py-3 font-bold text-white z-10">
-                  JOIN NOW
+                  SIGN UP AND JOIN NOW
                 </span>
               </Link>
             </div>
