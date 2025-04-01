@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import React, { useState } from 'react';
@@ -8,10 +9,10 @@ import {
   Legend, ResponsiveContainer 
 } from 'recharts';
 import { 
-  Users, Dumbbell, Calendar, CreditCard, 
-  MessageSquare, Home, Settings, Bell, 
+  Users, Dumbbell, CreditCard, Bell, 
   LogOut, Menu, ChevronDown, BarChart as BarChartIcon 
 } from 'lucide-react';
+import Sidebar from '@/app/components/Sidebar';
 
 type MembershipDataType = {
   name: string;
@@ -77,69 +78,13 @@ const AdminPanel: React.FC = () => {
   return (
     <div className="flex h-screen bg-gray-900">
       {/* Sidebar */}
-      <div className={`bg-black text-white w-64 flex-shrink-0 transition-all duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-64'}`}>
-        <div className="p-4 flex items-center justify-between border-b border-gray-800">
-          <div className="flex items-center">
-            <Dumbbell className="w-8 h-8 text-red-600 mr-2" />
-            <div>
-              <h1 className="text-lg font-bold">GYM ADMIN</h1>
-              <p className="text-xs text-gray-400">Management System</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="text-gray-500 hover:text-white md:hidden"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <nav className="pt-6">
-          <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Main
-          </div>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800 bg-gray-800 border-l-4 border-red-600">
-            <Home className="w-5 h-5 mr-3" />
-            <span>Dashboard</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <Users className="w-5 h-5 mr-3" />
-            <span>Members</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <Dumbbell className="w-5 h-5 mr-3" />
-            <span>Trainers</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <Calendar className="w-5 h-5 mr-3" />
-            <span>Programs</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <CreditCard className="w-5 h-5 mr-3" />
-            <span>Memberships</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <MessageSquare className="w-5 h-5 mr-3" />
-            <span>Inquiries</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <BarChartIcon className="w-5 h-5 mr-3" />
-            <span>Reports</span>
-          </a>
-          
-          <div className="px-4 py-2 mt-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Settings
-          </div>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <Settings className="w-5 h-5 mr-3" />
-            <span>Settings</span>
-          </a>
-          <a href="#" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
-            <LogOut className="w-5 h-5 mr-3" />
-            <span>Logout</span>
-          </a>
-        </nav>
+      <div className="flex min-h-screen bg-gray-100">
+      <Sidebar defaultOpen={true} />
+      
+      <div className="flex-1">
+        {/* Your main content goes here */}
       </div>
+    </div>
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
