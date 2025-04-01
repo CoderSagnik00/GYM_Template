@@ -85,10 +85,10 @@ export default function Sidebar({ defaultOpen = false }: SidebarProps) {
           <SidebarLink href="/members" active={pathname === '/members'} icon="users">
             Members
           </SidebarLink>
-          <SidebarLink href="/trainers" active={pathname === '/trainers'} icon="dumbbell">
+          <SidebarLink href="/admin-trainers" active={pathname === '/trainers'} icon="dumbbell">
             Trainers
           </SidebarLink>
-          <SidebarLink href="/programs" active={pathname === '/programs'} icon="calendar">
+          <SidebarLink href="/admin-programs" active={pathname === '/programs'} icon="calendar">
             Programs
           </SidebarLink>
           <SidebarLink href="/admin-manage-memberships" active={pathname === '/admin-manage-memberships'} icon="credit-card">
