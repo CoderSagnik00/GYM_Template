@@ -2,13 +2,22 @@
 
 import React, { useState, useEffect, ReactNode } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface SidebarProps {
   defaultOpen?: boolean;
 }
 
-export default function Sidebar({ defaultOpen = true }: SidebarProps) {
+export default function Sidebar({ defaultOpen = false }: SidebarProps) {
   const [sidebarOpen, setSidebarOpen] = useState(defaultOpen);
+  const pathname = usePathname();
+  
+  // Close sidebar when route changes (mobile only)
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setSidebarOpen(false);
+    }
+  }, [pathname]);
 
   // Prevent body scroll on mobile when sidebar is open
   useEffect(() => {
@@ -54,9 +63,9 @@ export default function Sidebar({ defaultOpen = true }: SidebarProps) {
             </div>
           </div>
           <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
+            onClick={() => setSidebarOpen(false)}
             className="text-gray-500 hover:text-white md:hidden"
-            aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+            aria-label="Close sidebar"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -70,25 +79,25 @@ export default function Sidebar({ defaultOpen = true }: SidebarProps) {
           </div>
           
           {/* Main Navigation Links */}
-          <SidebarLink href="/dashboard" active={true} icon="home">
+          <SidebarLink href="/admin-dashboard" active={pathname === '/dashboard'} icon="home">
             Dashboard
           </SidebarLink>
-          <SidebarLink href="/members" icon="users">
+          <SidebarLink href="/members" active={pathname === '/members'} icon="users">
             Members
           </SidebarLink>
-          <SidebarLink href="/trainers" icon="dumbbell">
+          <SidebarLink href="/trainers" active={pathname === '/trainers'} icon="dumbbell">
             Trainers
           </SidebarLink>
-          <SidebarLink href="/programs" icon="calendar">
+          <SidebarLink href="/programs" active={pathname === '/programs'} icon="calendar">
             Programs
           </SidebarLink>
-          <SidebarLink href="/admin-manage-memberships" icon="credit-card">
+          <SidebarLink href="/admin-manage-memberships" active={pathname === '/admin-manage-memberships'} icon="credit-card">
             Memberships
           </SidebarLink>
-          <SidebarLink href="/inquiries" icon="message-square">
+          <SidebarLink href="/inquiries" active={pathname === '/inquiries'} icon="message-square">
             Inquiries
           </SidebarLink>
-          <SidebarLink href="/reports" icon="bar-chart">
+          <SidebarLink href="/reports" active={pathname === '/reports'} icon="bar-chart">
             Reports
           </SidebarLink>
           
@@ -97,10 +106,10 @@ export default function Sidebar({ defaultOpen = true }: SidebarProps) {
           </div>
           
           {/* Settings Links */}
-          <SidebarLink href="/settings" icon="settings">
+          <SidebarLink href="/settings" active={pathname === '/settings'} icon="settings">
             Settings
           </SidebarLink>
-          <SidebarLink href="/logout" icon="log-out">
+          <SidebarLink href="/logout" active={pathname === '/logout'} icon="log-out">
             Logout
           </SidebarLink>
         </nav>
@@ -108,11 +117,11 @@ export default function Sidebar({ defaultOpen = true }: SidebarProps) {
       
       {/* Toggle button for mobile - positioned outside sidebar for easy access when sidebar is closed */}
       <button
-        onClick={() => setSidebarOpen(!sidebarOpen)}
+        onClick={() => setSidebarOpen(true)}
         className={`fixed bottom-4 left-4 z-30 md:hidden bg-red-600 text-white p-3 rounded-full shadow-lg transition-transform duration-300 ${
           sidebarOpen ? 'scale-0' : 'scale-100'
         }`}
-        aria-label="Toggle sidebar"
+        aria-label="Open sidebar"
       >
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -204,12 +213,16 @@ function SidebarLink({ href, children, icon, active = false }: SidebarLinkProps)
   return (
     <Link 
       href={href} 
-      className={`flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800 transition-colors duration-200 ${
-        active ? 'bg-gray-800 border-l-4 border-red-600' : ''
+      className={`flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800 transition-all duration-300 ease-in-out ${
+        active 
+          ? 'bg-gray-800 border-l-4 border-red-600 font-medium scale-100' 
+          : 'border-l-4 border-transparent hover:border-gray-600'
       }`}
     >
-      {renderIcon(icon)}
-      <span>{children}</span>
+      <div className={`flex items-center transition-transform duration-300 ${active ? 'transform translate-x-1' : ''}`}>
+        {renderIcon(icon)}
+        <span className={`${active ? 'text-white' : ''}`}>{children}</span>
+      </div>
     </Link>
   );
 }
