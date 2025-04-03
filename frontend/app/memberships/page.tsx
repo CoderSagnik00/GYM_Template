@@ -143,11 +143,14 @@ const MembershipPage: React.FC = () => {
                     ))}
                   </ul>
                   
-                  <button className={`relative overflow-hidden py-3 sm:py-4 px-6 sm:px-8 rounded font-bold text-base sm:text-lg transition-all duration-500 group w-full ${
-                    plan.highlighted 
-                      ? 'bg-white text-red-600 hover:bg-gray-100' 
-                      : 'bg-transparent hover:bg-red-600 text-white border-2 border-red-600'
-                  }`}>
+                  <button 
+                    className={`relative overflow-hidden py-3 sm:py-4 px-6 sm:px-8 rounded font-bold text-base sm:text-lg transition-all duration-500 group w-full ${
+                      plan.highlighted
+                        ? 'bg-white text-red-600 hover:bg-gray-100'
+                        : 'bg-transparent hover:bg-red-600 text-white border-2 border-red-600'
+                    }`}
+                    onClick={() => window.location.href = '/new-membership'}
+                  >
                     <span className="relative z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 inline-block">
                       GET STARTED
                     </span>
