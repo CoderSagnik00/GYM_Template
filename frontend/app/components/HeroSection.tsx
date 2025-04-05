@@ -37,7 +37,7 @@ const HeroSection: React.FC = () => {
   }, [backgroundImages.length]);
   
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative min-h-screen overflow-hidden bg-black pt-20">
       {/* Premium Background Image Slider */}
       {backgroundImages.map((image, index) => (
         <div 
@@ -66,105 +66,100 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-0 left-0 w-1/2 h-40 bg-red-600 opacity-20 blur-[120px] z-3"></div>
       <div className="absolute bottom-0 left-10 w-1/3 h-40 bg-red-600 opacity-20 blur-[120px] z-3"></div>
       
-      {/* Main Content with Left Alignment */}
-      <div className="absolute inset-0 flex items-center z-10">
-        <div className="container mx-auto px-6 lg:px-16">
-          <div 
-            className={`max-w-3xl transform transition-all duration-1000 ease-out ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
-          >
-            {/* Explosive Typography - Left Aligned */}
-            <h1 className="text-7xl md:text-9xl font-black mb-8 leading-none tracking-tight text-left">
-              <div className="overflow-hidden">
-                <span 
-                  className={`block mb-2 transition-all duration-1000 delay-300 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-                >
-                  <span className="relative inline-block">
-                    <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">FORGE</span>
-                    <span className="absolute -left-1.5 -top-1.5 text-red-600 blur-[1px] z-0 opacity-80">FORGE</span>
-                  </span>
-                </span>
-                <span 
-                  className={`block transition-all duration-1000 delay-500 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
-                >
-                  <span className="text-red-600 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">YOUR LEGACY</span>
-                </span>
-              </div>
-            </h1>
-            
-            {/* Tagline - Left Aligned */}
-            <p 
-              className={`text-xl md:text-2xl mb-12 max-w-xl leading-relaxed font-light text-gray-300 transition-all duration-1000 delay-700 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} text-left`}
-            >
-              Transform your <span className="text-white font-medium">body</span>. Elevate your <span className="text-white font-medium">mind</span>. 
-              <span className="block mt-3">Unleash your <span className="text-red-500 font-bold">full potential</span>.</span>
-            </p>
-            
-            {/* CTA Buttons - Redesigned to Complement Website */}
+      {/* Main Content */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Main Heading Section - Perfectly Spaced */}
+        <div className="flex-grow flex items-center">
+          <div className="container mx-auto px-5 sm:px-8 lg:px-16 pt-16 sm:pt-20 md:pt-0">
             <div 
-              className={`flex flex-wrap gap-6 transition-all duration-1000 delay-900 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+              className={`max-w-3xl transform transition-all duration-1000 ease-out ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
             >
-              <button className="relative overflow-hidden group">
-                <div className="absolute inset-0 w-full h-full bg-red-600 border-red-600 border-2 rounded transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1 group-hover:shadow-lg group-hover:shadow-red-600/30"></div>
-                <span className="relative block px-12 py-4 font-bold uppercase tracking-wider text-base md:text-lg text-white z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1">
-                  Start Now
-                </span>
-              </button>
+              {/* Explosive Typography - Refined Spacing */}
+              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black leading-none tracking-tight text-left">
+                <div className="overflow-hidden">
+                  <span 
+                    className={`block mb-1 sm:mb-2 transition-all duration-1000 delay-300 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
+                  >
+                    <span className="relative inline-block">
+                      <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">FORGE</span>
+                      <span className="absolute -left-1 sm:-left-1.5 -top-1 sm:-top-1.5 text-red-600 blur-[1px] z-0 opacity-80">FORGE</span>
+                    </span>
+                  </span>
+                  <span 
+                    className={`block transition-all duration-1000 delay-500 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
+                  >
+                    <span className="text-red-600 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">YOUR LEGACY</span>
+                  </span>
+                </div>
+              </h1>
               
-              <button className="relative overflow-hidden group">
-                <div className="absolute inset-0 w-full h-full border-2 border-white rounded transition-all duration-500 ease-in-out group-hover:border-red-500 group-hover:scale-105 group-hover:-rotate-1 group-hover:shadow-lg"></div>
-                <div className="absolute inset-0 w-full h-full bg-white scale-0 rounded transition-all duration-500 ease-in-out group-hover:scale-100 group-hover:-rotate-1"></div>
-                <span className="relative block px-12 py-4 font-bold uppercase tracking-wider text-base md:text-lg text-white z-10 transition-all duration-500 ease-in-out group-hover:text-red-600 group-hover:-translate-y-1 group-hover:translate-x-1">
-                  Explore
-                </span>
-              </button>
+              {/* Tagline - Precise Spacing */}
+              <p 
+                className={`text-lg sm:text-xl md:text-2xl mt-4 sm:mt-6 mb-8 sm:mb-10 max-w-xl leading-relaxed font-light text-gray-300 transition-all duration-1000 delay-700 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} text-left`}
+              >
+                Transform your <span className="text-white font-medium">body</span>. Elevate your <span className="text-white font-medium">mind</span>. 
+                <span className="block mt-2 sm:mt-3">Unleash your <span className="text-red-500 font-bold">full potential</span>.</span>
+              </p>
+              
+              {/* CTA Buttons - Perfectly Aligned */}
+              <div 
+                className={`flex flex-wrap gap-4 sm:gap-6 mt-2 transition-all duration-1000 delay-900 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+              >
+                <button className="relative overflow-hidden group">
+                  <div className="absolute inset-0 w-full h-full bg-red-600 border-red-600 border-2 rounded transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1 group-hover:shadow-lg group-hover:shadow-red-600/30"></div>
+                  <span className="relative block px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-bold uppercase tracking-wider text-sm sm:text-base md:text-lg text-white z-10 transition-transform duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1">
+                    Start Now
+                  </span>
+                </button>
+                
+                <button className="relative overflow-hidden group">
+                  <div className="absolute inset-0 w-full h-full border-2 border-white rounded transition-all duration-500 ease-in-out group-hover:border-red-500 group-hover:scale-105 group-hover:-rotate-1 group-hover:shadow-lg"></div>
+                  <div className="absolute inset-0 w-full h-full bg-white scale-0 rounded transition-all duration-500 ease-in-out group-hover:scale-100 group-hover:-rotate-1"></div>
+                  <span className="relative block px-8 sm:px-10 md:px-12 py-3 sm:py-4 font-bold uppercase tracking-wider text-sm sm:text-base md:text-lg text-white z-10 transition-all duration-500 ease-in-out group-hover:text-red-600 group-hover:-translate-y-1 group-hover:translate-x-1">
+                    Explore
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Premium Slider Indicators - Repositioned */}
-      <div className="absolute bottom-28 left-16 right-0 flex justify-start gap-3 z-10 container mx-auto px-6 lg:px-16">
-        {backgroundImages.map((_, index) => (
-          <button 
-            key={index} 
-            onClick={() => setActiveSlide(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSlide === index ? 'bg-red-600 w-8' : 'bg-white/50 hover:bg-white/80'}`}
-            aria-label={`Go to slide ${index + 1}`}
-          ></button>
-        ))}
-      </div>
-      
-      {/* Animated Stats Counters - At Bottom */}
-      <div className="absolute bottom-12 left-0 right-0 z-10">
-        <div 
-          className={`container mx-auto px-6 lg:px-16 transition-all duration-1000 delay-1200 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {[
-              { number: "5,000+", label: "ELITE MEMBERS" },
-              { number: "25+", label: "MASTER TRAINERS" },
-              { number: "100+", label: "PRO EQUIPMENT" },
-              { number: "24/7", label: "UNLIMITED ACCESS" }
-            ].map((stat, index) => (
-              <div 
+        
+        {/* Bottom Section Container - Perfect Spacing */}
+        <div className="relative z-10 pb-14 sm:pb-16 md:pb-20 px-5 sm:px-8 lg:px-16">
+          {/* Premium Slider Indicators - Perfectly Positioned */}
+          <div className="flex justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 md:mb-10">
+            {backgroundImages.map((_, index) => (
+              <button 
                 key={index} 
-                className="p-5 backdrop-blur-lg bg-black/30 rounded border border-gray-800 hover:border-red-800 transition-all duration-300 transform hover:scale-105"
-                style={{ transitionDelay: `${1.3 + index * 0.1}s` }}
-              >
-                <div className="text-2xl md:text-3xl font-black text-white mb-1">{stat.number}</div>
-                <div className="text-xs tracking-wider text-red-500 font-semibold">{stat.label}</div>
-              </div>
+                onClick={() => setActiveSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${activeSlide === index ? 'bg-red-600 w-6 sm:w-8' : 'bg-white/50 hover:bg-white/80'}`}
+                aria-label={`Go to slide ${index + 1}`}
+              ></button>
             ))}
           </div>
-        </div>
-      </div>
-      
-      {/* Scroll Indicator - Repositioned */}
-      <div className={`absolute bottom-6 right-10 flex justify-center transition-all duration-1000 delay-1600 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="animate-bounce">
-          <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+          
+          {/* Animated Stats Counters - Perfect Grid Spacing */}
+          <div 
+            className={`transition-all duration-1000 delay-1200 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          >
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 text-center">
+              {[
+                { number: "5,000+", label: "ELITE MEMBERS" },
+                { number: "25+", label: "MASTER TRAINERS" },
+                { number: "100+", label: "PRO EQUIPMENT" },
+                { number: "24/7", label: "UNLIMITED ACCESS" }
+              ].map((stat, index) => (
+                <div 
+                  key={index} 
+                  className="p-3 sm:p-4 md:p-5 backdrop-blur-lg bg-black/30 rounded border border-gray-800 hover:border-red-800 transition-all duration-300 transform hover:scale-105"
+                  style={{ transitionDelay: `${1.3 + index * 0.1}s` }}
+                >
+                  <div className="text-xl sm:text-2xl md:text-3xl font-black text-white">{stat.number}</div>
+                  <div className="text-xs tracking-wider text-red-500 font-semibold mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -25,16 +25,49 @@ export default function Navbar() {
     };
   }, [scrolled]);
 
-  // Prevent body scroll when menu is open
+  // Prevent body scroll when menu is open and reset scroll position for mobile menu
   useEffect(() => {
     if (menuOpen) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
       document.body.style.overflow = 'hidden';
+      // When menu opens, force scroll to top of page to ensure full menu visibility
+      window.scrollTo(0, 0);
+      
+      // Store the scroll position to restore later
+      document.body.dataset.scrollY = scrollY.toString();
     } else {
       document.body.style.overflow = '';
+      
+      // Restore scroll position when menu closes
+      const scrollY = document.body.dataset.scrollY;
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY));
+      }
     }
     
     return () => {
       document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+  
+  // Add click outside handler to close menu when clicking outside navbar
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const navbar = document.querySelector('nav');
+      // Check if the menu is open and the click is outside the navbar
+      if (menuOpen && navbar && !navbar.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    
+    // Add the event listener when the menu is open
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen]);
 
@@ -135,12 +168,24 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - Improved animation and transitions */}
+      {/* Mobile menu - Updated to be fixed at top of screen regardless of scroll position */}
       <div 
-        className={`fixed inset-0 bg-black z-40 transition-transform duration-500 ease-in-out ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 left-0 right-0 bottom-0 bg-black z-40 transition-all duration-500 ease-in-out ${
+          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none translate-x-full'
         }`}
+        style={{ height: '100vh' }}
       >
+        {/* Close button (X) for mobile menu */}
+        <button 
+          className="absolute top-4 right-4 text-white p-2 z-50"
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+        >
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <div className="container mx-auto px-6 h-full flex flex-col justify-center items-center">
           <div className="flex flex-col items-center gap-8 mb-12">
             {/* Updated mobile menu options with Memberships */}
