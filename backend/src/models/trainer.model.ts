@@ -49,3 +49,19 @@ export const getAllTrainers = async (): Promise<any[]> => {
         throw new Error(`Error fetching trainers: ${error}`);
     }
 };
+
+export const deleteTrainerById = async (id: string): Promise<boolean> => {
+    try {
+        const result = await trainer.deleteOne({ _id: new ObjectId(id) });
+
+        // If no document is deleted, return false
+        if (result.deletedCount === 0) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        console.error("Error in deleteTrainerById:", err);
+        throw new Error(`Error deleting trainer with id ${id}`);
+    }
+};

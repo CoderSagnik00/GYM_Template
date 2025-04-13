@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { addTrainer as addTrainerToDB, getTrainerById, getAllTrainers, updateTrainer as updateTrainerInDB } from "../models/trainer.model.js"; // adjust path if needed
+import { addTrainer as addTrainerToDB, getTrainerById, getAllTrainers, updateTrainer as updateTrainerInDB, deleteTrainerById } from "../models/trainer.model.js"; // adjust path if needed
 
 export const addTrainer = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -74,6 +74,23 @@ export const updateTrainer = async (req: Request, res: Response): Promise<void> 
         res.status(200).json(updatedTrainer);
     } catch (error) {
         console.error("Error in updateTrainer controller:", error);
+        res.status(500).json({ message: "Server error. Please try again later." });
+    }
+};
+
+export const deleteTrainer = async (req: Request, res: Response): Promise<void> => {
+    const { id } = req.params; // Trainer ID is passed in the URL path
+
+    try {
+        const success = await deleteTrainerById(id);
+
+        if (success) {
+            res.status(200).json({ message: "Trainer deleted successfully." });
+        } else {
+            res.status(404).json({ message: "Trainer not found." });
+        }
+    } catch (error) {
+        console.error("Error in deleteTrainer controller:", error);
         res.status(500).json({ message: "Server error. Please try again later." });
     }
 };
